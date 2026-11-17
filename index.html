@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVELUXI | Creative Review Studio</title>
+<meta name="description" content="NOVELUXI Creative Review Portal">
+<style>
+:root {
+  --ink:#25221f;
+  --muted:#82796f;
+  --cream:#f7f5f1;
+  --white:#fff;
+  --gold:#b98a5a;
+  --line:#e9e3da;
+  --green:#39775c;
+  --red:#a84e45;
+  --shadow:0 12px 40px rgba(45,35,25,.06);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:14px;line-height:1.6
+}
+header{
+  height:76px;background:#fff;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;position:sticky;top:0;z-index:10
+}
+.brand{font-family:Georgia,serif;font-size:21px;letter-spacing:2px}
+.brand span{display:block;font:10px Arial;letter-spacing:3px;color:var(--muted);margin-top:2px}
+.header-right{font-size:12px;color:var(--muted)}
+.container{max-width:1440px;margin:auto;padding:45px 5% 70px}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:bold}
+.hero{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:30px;margin-bottom:38px
+}
+h1{font:42px Georgia,serif;font-weight:normal;margin:10px 0}
+.hero p{color:var(--muted);max-width:650px;margin:0}
+.collection{
+  background:#fff;border:1px solid var(--line);padding:18px 22px;
+  min-width:190px;border-radius:5px
+}
+.collection strong{font:27px Georgia,serif;display:block}
+.collection span{font-size:11px;color:var(--muted);letter-spacing:1px}
+.toolbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:17px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);margin-bottom:25px
+}
+.toolbar h2{font:20px Georgia,serif;margin:0}
+.tag{
+  display:inline-block;border:1px solid var(--line);padding:6px 12px;
+  border-radius:30px;font-size:11px;color:var(--muted)
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:7px;
+  overflow:hidden;box-shadow:var(--shadow)
+}
+.card-top{padding:23px 25px 15px}
+.card-number{font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:bold}
+.card h3{font:25px Georgia,serif;font-weight:normal;margin:6px 0}
+.card-subtitle{color:var(--muted);font-size:12px}
+.product-image{
+  width:100%;height:300px;object-fit:contain;background:#fff;
+  display:block;border-top:1px solid #f2eee8;border-bottom:1px solid #f2eee8
+}
+.card-content{padding:22px 25px}
+.section-title{
+  font-size:10px;letter-spacing:2px;color:var(--gold);
+  font-weight:bold;margin:20px 0 9px
+}
+.section-title:first-child{margin-top:0}
+.content-block{
+  background:#faf9f7;border:1px solid #f0ece6;
+  border-radius:5px;padding:14px 16px;margin-bottom:10px
+}
+.content-block label{
+  display:block;font-size:10px;letter-spacing:1px;
+  color:var(--muted);text-transform:uppercase;margin-bottom:7px
+}
+.content-block p{margin:0;white-space:pre-wrap;font-size:13px}
+.media-link{color:#8d663e;word-break:break-all}
+.actions{
+  display:flex;gap:9px;padding:18px 25px;
+  border-top:1px solid var(--line);background:#fcfbf9;flex-wrap:wrap
+}
+button{
+  border:0;padding:12px 17px;border-radius:4px;cursor:pointer;
+  font-size:11px;font-weight:bold;letter-spacing:.5px;
+  transition:.2s
+}
+button:hover{filter:brightness(.95);transform:translateY(-1px)}
+.approve{background:var(--green);color:white}
+.revision{background:#eee7dc;color:#51483e}
+.reject{background:#f5e9e7;color:var(--red)}
+.status{
+  margin-left:auto;align-self:center;font-size:10px;
+  letter-spacing:1px;color:var(--muted)
+}
+.status.approved{color:var(--green)}
+.status.rejected{color:var(--red)}
+.status.revision{color:#956c38}
+.footer{
+  text-align:center;color:var(--muted);font-size:11px;
+  padding-top:45px;letter-spacing:1px
+}
+.modal{
+  display:none;position:fixed;inset:0;background:#17141199;
+  z-index:30;align-items:center;justify-content:center;padding:20px
+}
+.modal.open{display:flex}
+.modal-box{
+  width:min(520px,100%);background:#fff;padding:28px;
+  border-radius:7px;box-shadow:var(--shadow)
+}
+.modal-box h3{font:25px Georgia,serif;margin:0 0 12px}
+textarea{
+  width:100%;min-height:120px;padding:12px;border:1px solid var(--line);
+  border-radius:4px;font:13px Arial;resize:vertical
+}
+.modal-buttons{display:flex;justify-content:flex-end;gap:10px;margin-top:15px}
+@media(max-width:850px){
+  .grid{grid-template-columns:1fr}
+  .hero{align-items:flex-start;flex-direction:column}
+  .collection{width:100%}
+  h1{font-size:34px}
+}
+@media(max-width:520px){
+  header{padding:0 18px}
+  .container{padding:30px 16px 50px}
+  .card-top,.card-content{padding-left:17px;padding-right:17px}
+  .actions{padding:15px 17px}
+  .status{width:100%;margin:5px 0 0}
+  .product-image{height:240px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    NOVELUXI
+    <span>CREATIVE STUDIO</span>
+  </div>
+  <div class="header-right">PRIVATE CREATIVE REVIEW</div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">THE ART OF REFINED ADVERTISING</div>
+      <h1>Creative Review Studio</h1>
+      <p>
+        Welcome to the NOVELUXI creative review experience.
+        Review each advertising concept individually and approve
+        only the content that meets our brand standards.
+      </p>
+    </div>
+    <div class="collection">
+      <strong>03</strong>
+      <span>CREATIVE CONCEPTS</span>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <h2>Advertising concepts</h2>
+    <span class="tag">INTERNAL APPROVAL</span>
+  </section>
+
+  <div class="grid" id="creativeGrid"></div>
+
+  <footer class="footer">
+    NOVELUXI &nbsp;|&nbsp; PREMIUM FASHION & LEATHER ACCESSORIES
+    <br><br>CREATIVE REVIEW PORTAL
+  </footer>
+</main>
+
+<div class="modal" id="revisionModal">
+  <div class="modal-box">
+    <h3>Request a revision</h3>
+    <p id="revisionTitle">Please describe the requested changes.</p>
+    <textarea id="revisionNote" placeholder="Describe the changes required..."></textarea>
+    <div class="modal-buttons">
+      <button class="revision" onclick="closeModal()">Cancel</button>
+      <button class="approve" onclick="submitRevision()">Submit request</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const demoProduct = {
+  name: "AURELIA Women's Genuine Leather Tote Bag",
+  image: "https://cdn.shopify.com/s/files/1/0883/1457/7173/files/02_face_recadrage_leger_2048.png?v=1791704821"
+};
+
+const creatives = [
+  {
+    angle:"Elegance & Style",
+    concept:"The British-Inspired Silhouette",
+    strategy:"Focus on the visual appeal, fashion styling and refined presentation of the product.",
+    hook:"Crafted for an elegant everyday look.",
+    caption:"Elevate your everyday look with the NOVELUXI AURELIA Tote Bag. Discover a refined accessory designed to complement your personal style.",
+    facebookCTA:"Shop Now",
+    hashtags:"#NOVELUXI #LeatherTote #LuxuryAccessories",
+    primary:"Discover the NOVELUXI AURELIA Tote Bag and bring a refined touch to your everyday style.",
+    headline:"Elevate Your Everyday Style",
+    description:"Discover the NOVELUXI AURELIA Tote Bag",
+    metaCTA:"Shop Now",
+    media:"Shopify product image",
+    visual:"Clean product photography with a neutral, premium background.",
+    video:"Create a refined product showcase highlighting the silhouette and details of the bag.",
+    duration:"10–15 seconds"
+  },
+  {
+    angle:"Lifestyle & Emotion",
+    concept:"Effortless Everyday Transitions",
+    strategy:"Create an emotional connection by presenting the bag in an everyday lifestyle context.",
+    hook:"Your style, your day, your way.",
+    caption:"From morning plans to evening outings, discover an accessory that complements your everyday moments.",
+    facebookCTA:"Shop Now",
+    hashtags:"#NOVELUXI #EverydayStyle #LeatherBag",
+    primary:"Discover an accessory designed to complement your daily routine with timeless style.",
+    headline:"Discover Everyday Versatility",
+    description:"Explore the NOVELUXI AURELIA Tote Bag",
+    metaCTA:"Shop Now",
+    media:"Lifestyle product visual",
+    visual:"A refined lifestyle scene with the product as the central focus.",
+    video:"Show the bag in a tasteful everyday setting with elegant transitions.",
+    duration:"10–15 seconds"
+  },
+  {
+    angle:"Product Spotlight",
+    concept:"A Closer Look at AURELIA",
+    strategy:"Highlight verified product details and the overall product presentation.",
+    hook:"Discover the details that define your style.",
+    caption:"Meet the NOVELUXI AURELIA Tote Bag. Explore its design and discover an elegant addition to your wardrobe.",
+    facebookCTA:"Shop Now",
+    hashtags:"#NOVELUXI #ProductSpotlight #LeatherAccessories",
+    primary:"Take a closer look at the NOVELUXI AURELIA Tote Bag.",
+    headline:"Meet the AURELIA Tote Bag",
+    description:"Explore the NOVELUXI collection",
+    metaCTA:"Shop Now",
+    media:"Product detail visual",
+    visual:"A clean close-up product presentation, using verified product photography.",
+    video:"Create a sequence of close-up product views with elegant, minimal transitions.",
+    duration:"10–15 seconds"
+  }
+];
+
+let activeRevision = null;
+
+function block(label, text) {
+  return `<div class="content-block">
+    <label>${label}</label><p>${escapeHTML(text || "Not provided")}</p>
+  </div>`;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[char]);
+}
+
+function render() {
+  document.getElementById("creativeGrid").innerHTML = creatives.map((c,i) => `
+    <article class="card" id="card-${i}">
+      <div class="card-top">
+        <div class="card-number">CREATIVE CONCEPT 0${i+1}</div>
+        <h3>${escapeHTML(c.concept)}</h3>
+        <div class="card-subtitle">${escapeHTML(c.angle)}</div>
+      </div>
+      <img class="product-image" src="${demoProduct.image}" alt="NOVELUXI AURELIA product preview">
+      <div class="card-content">
+        <div class="section-title">CREATIVE STRATEGY</div>
+        ${block("Concept",c.concept)}
+        ${block("Strategy",c.strategy)}
+
+        <div class="section-title">FACEBOOK PUBLICATION</div>
+        ${block("Hook",c.hook)}
+        ${block("Caption",c.caption)}
+        ${block("Call to action",c.facebookCTA)}
+        ${block("Hashtags",c.hashtags)}
+
+        <div class="section-title">META ADS</div>
+        ${block("Primary text",c.primary)}
+        ${block("Headline",c.headline)}
+        ${block("Description",c.description)}
+        ${block("CTA",c.metaCTA)}
+
+        <div class="section-title">MEDIA & VISUAL DIRECTION</div>
+        ${block("Media recommendation",c.media)}
+        ${block("Visual direction",c.visual)}
+        ${block("AI video prompt",c.video)}
+        ${block("Recommended duration",c.duration)}
+      </div>
+      <div class="actions">
+        <button class="approve" onclick="setStatus(${i},'APPROVED')">Approve</button>
+        <button class="revision" onclick="openRevision(${i})">Request revision</button>
+        <button class="reject" onclick="setStatus(${i},'REJECTED')">Reject</button>
+        <span class="status" id="status-${i}">PENDING REVIEW</span>
+      </div>
+    </article>
+  `).join("");
+}
+
+function setStatus(index,status) {
+  const el = document.getElementById("status-"+index);
+  el.textContent = status;
+  el.className = "status " + (status==="APPROVED" ? "approved" : "rejected");
+}
+
+function openRevision(index) {
+  activeRevision = index;
+  document.getElementById("revisionTitle").textContent =
+    "Revision request for: " + creatives[index].concept;
+  document.getElementById("revisionNote").value = "";
+  document.getElementById("revisionModal").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("revisionModal").classList.remove("open");
+}
+
+function submitRevision() {
+  const note = document.getElementById("revisionNote").value.trim();
+  if (!note) {
+    alert("Please describe the requested changes.");
+    return;
+  }
+  const el = document.getElementById("status-"+activeRevision);
+  el.textContent = "REVISION REQUESTED";
+  el.className = "status revision";
+  closeModal();
+}
+
+render();
+</script>
+</body>
+</html>
